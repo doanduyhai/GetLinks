@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+
+  <head th:substituteby="templates/desktop :: header" />	
+  <body>
+
+	<div id="topbar-home" th:substituteby="templates/desktop :: topbar-home"></div>
+
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="tabbable">
+                    <ul class="nav nav-tabs">  
+						<li class="active">
+							<a id="myNetworkTab" href="#myNetworkPanel" data-toggle="pill">
+								<img src="/assets/img/network.png" th:src="@{/assets/img/network.png}"></img> My Network
+							</a>
+						</li>
+						<li>
+							<a id="addNetworkTab" href="#addNetworkPanel" data-toggle="pill">
+								<img src="/assets/img/add_network.png" th:src="@{/assets/img/add_network.png}"></img> Add Networks
+							</a>
+						</li>
+						<li>
+							<a id="generateLinkTab" href="#generateLinkPanel" data-toggle="pill">
+								<img src="/assets/img/generate_link.png" th:src="@{/assets/img/generate_link.png}"></img> Generate Links
+							</a>
+						</li>
+						<li>
+							<a id="profileTab" href="#profilePanel" data-toggle="pill">
+								<img src="/assets/img/profile_edit.png" th:src="@{/assets/img/profile_edit.png}"></img> My Profile
+							</a>
+						</li>
+						<li>
+							<a id="getAppsTab" href="#getAppsPanel" data-toggle="pill">
+								<img src="/assets/img/get_apps.png" th:src="@{/assets/img/get_apps.png}"></img> Mobile App
+							</a>
+						</li>
+						<li>
+							<a id="faqTab" href="#faqPanel" data-toggle="pill">
+								<img src="/assets/img/faq.png" th:src="@{/assets/img/faq.png}"></img> F.A.Q
+							</a>
+						</li>
+						<li>
+							<a id="contactUsTab" href="#contactUsPanel" data-toggle="pill">
+								<img src="/assets/img/contact_us.png" th:src="@{/assets/img/contact_us.png}"></img> Contact Us
+							</a>
+						</li>																										
+					</ul>
+					<div id="panels" class="tab-content alert alert-info">
+						<div class="tab-pane active" id="myNetworkPanel">
+							<h2>My Network</h2>
+							xxx		
+						</div>
+						<div class="tab-pane" id="addNetworkPanel">
+							<h2>Add Networks</h2>					
+						</div>
+						<div class="tab-pane center" id="generateLinkPanel">
+							<h2>Generate Links</h2>
+														
+						</div>
+						<div class="tab-pane center" id="profilePanel">
+							<h2>My Profile</h2>
+																					
+																					
+						</div>
+						<div class="tab-pane center" id="getAppsPanel">
+							<h2>Download the Mobile App</h2>
+																					
+																					
+						</div>
+						<div class="tab-pane center" id="faqPanel">
+							<h2>F.A.Q</h2>
+																					
+																					
+						</div>
+						<div class="tab-pane center" id="contactUsPanel">
+							<h2>Contact Us</h2>
+																					
+																					
+						</div>																															
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<footer id="center-footer" th:substituteby="templates/desktop :: footer"></footer>
+			
+  </body>
+</html>
