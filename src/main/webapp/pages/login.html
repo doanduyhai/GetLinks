@@ -10,7 +10,7 @@
 	<div id="topbar-login" th:substituteby="templates/desktop :: topbar-login"></div>
 	
     <div class="container">
-        <div class="span4 offset4">
+        <div class="span5 offset4">
             <h1>Authentication</h1>
 
             <form action="authentication" th:action="@{/authentication}" method="post" class="well center">
@@ -21,7 +21,29 @@
                     <label>Password :</label> <input id="j_password" name="j_password"
                                                      type="password" required="required" class="input span3"
                                                      placeholder="Your password..."/>
+				<label class="checkbox left">
+	                <input type="checkbox"
+	                       name="_spring_security_remember_me" 
+	                       id="_spring_security_remember_me"
+	                       value="true" checked="checked"/>&nbsp;Remember me
+            	</label>
+                                                     
                 </fieldset>
+                <br/>
+                Additional anti-bot authentication
+                <br/>
+                <script type="text/javascript"
+     				src="http://www.google.com/recaptcha/api/challenge?k=6LfGO9USAAAAABgtDaQ0_Q9RU4leCBFoSpqiUpLc">
+  				</script>
+  				<noscript>
+     				<iframe src="http://www.google.com/recaptcha/api/noscript?k=6LfGO9USAAAAABgtDaQ0_Q9RU4leCBFoSpqiUpLc"
+         			height="300" width="500"></iframe>
+         			<br/>
+     				<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+     				<input type="hidden" name="recaptcha_response_field"
+         				value="manual_challenge"></input>
+  				</noscript>
+  				<br/>
                 <button type="submit" class="btn btn-success">Authenticate</button>
             </form>
         </div>

@@ -130,6 +130,11 @@
     	<groupId>org.hibernate</groupId>
     	<artifactId>hibernate-validator</artifactId>
     	<version>4.2.0.Final</version>
-    </dependency>      	
+    </dependency>
+    <dependency>
+    	<groupId>net.tanesha.recaptcha4j</groupId>
+    	<artifactId>recaptcha4j</artifactId>
+    	<version>0.0.7</version>
+    </dependency>
   </dependencies>
 </project>

@@ -22,8 +22,15 @@
 	</beans:bean>
 	
     <http auto-config="true" use-expressions="true">
-    	<remember-me/>
+    	<remember-me key="ezfdf15er2" 
+    		user-service-ref="userDetailsService"
+    	/>
+    	
     	<custom-filter ref="ajaxTimeoutRedirectFilter" after="EXCEPTION_TRANSLATION_FILTER"/>
+    	 
+<!--     	<custom-filter ref="reCaptchaFilter" before="FORM_LOGIN_FILTER"/> -->
+<!--     	<custom-filter ref="reCaptchaVerifier" after="FORM_LOGIN_FILTER"/> -->
+    	
         <intercept-url pattern="/**" access="isAuthenticated()" />
         <form-login
                 login-processing-url="/authentication"
@@ -33,11 +40,13 @@
                 always-use-default-target="true"
                 authentication-success-handler-ref="getlinksAuthenticationSuccessHandler"/>
         
-        <remember-me user-service-ref="userDetailsService"/>
         <logout logout-url="/logout"
                 logout-success-url="/login"/>
     </http>
-
+	
+	<authentication-manager>
+	</authentication-manager>
+	
     <authentication-manager>
         <authentication-provider user-service-ref="userDetailsService"/>
     </authentication-manager>
@@ -46,5 +55,9 @@
         <user name="magdou" password="password" authorities="ROLE_USER"/>
         <user name="duyhai" password="password" authorities="ROLE_USER"/>
     </user-service>
-
+	
+	<beans:bean id="reCaptchaFilter" class="fr.getlinks.security.ReCaptchaFilter"/>
+	<beans:bean id="reCaptchaVerifier" class="fr.getlinks.security.ReCaptchaVerifier">
+		<beans:property name="reCaptchaFilter" ref="reCaptchaFilter"/>
+	</beans:bean>
 </beans:beans>
