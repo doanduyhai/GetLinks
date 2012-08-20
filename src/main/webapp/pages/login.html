@@ -12,20 +12,35 @@
     <div class="container">
         <div class="span5 offset4">
             <h1>Authentication</h1>
-
             <form action="authentication" th:action="@{/authentication}" method="post" class="well center">
+            	
+            	<br th:if="${authenticationError}"/>
+            	<div th:if="${authenticationError}" class="alert alert-error">
+            		Incorrect Login/Password
+            	</div>
+            	<br th:if="${authenticationError}"/>
+            	
+            	<br th:if="${reCaptchaError}"/>
+            	<div th:if="${reCaptchaError}" class="alert alert-error">
+            		Incorrect reCaptcha
+            	</div>
+            	<br th:if="${reCaptchaError}"/>
+            	
                 <fieldset>
-                    <label>Login :</label> <input id="j_username" name="j_username"
-                                                  type="text" required="required" autofocus="autofocus" class="input span3"
-                                                  placeholder="Your login..."/>
-                    <label>Password :</label> <input id="j_password" name="j_password"
-                                                     type="password" required="required" class="input span3"
-                                                     placeholder="Your password..."/>
+                    <label>Login :</label> 
+                    	<input id="j_username" name="j_username"
+                        	type="text" required="required" autofocus="autofocus" class="input span3"
+                        	th:value="${login}"
+                            placeholder="Your login..."/>
+                    <label>Password :</label> 
+                    	<input id="j_password" name="j_password"
+                        	type="password" required="required" class="input span3"
+                            placeholder="Your password..."/>
 				<label class="checkbox left">
 	                <input type="checkbox"
 	                       name="_spring_security_remember_me" 
 	                       id="_spring_security_remember_me"
-	                       value="true" checked="checked"/>&nbsp;Remember me
+	                       value="true" />&nbsp;Remember me
             	</label>
                                                      
                 </fieldset>

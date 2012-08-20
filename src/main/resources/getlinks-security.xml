@@ -1,63 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-             xmlns:beans="http://www.springframework.org/schema/beans"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xmlns:context="http://www.springframework.org/schema/context"
-             xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-           http://www.springframework.org/schema/security
-           http://www.springframework.org/schema/security/spring-security-3.1.xsd
-           http://www.springframework.org/schema/context
-           http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-    <context:component-scan base-package="fr.getlinks.security"/>
+	<!-- Definition of the filter chain & URL pattern mapping -->
+	<bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
+		<sec:filter-chain-map request-matcher="ant">
+		    <sec:filter-chain pattern="/**"  filters="
+		           securityContextPersistentFilter,
+		           logoutFilter,
+		           authenticationProcessingFilter,
+		           anonymousFilter,
+		           exceptionTranslationFilter,
+		           ajaxTimeoutRedirectFilter,
+		           filterSecurityInterceptor
+		           " />
+	  	</sec:filter-chain-map>
+	</bean>
 
-    <http pattern="/login" security="none"/>
-    <http pattern="/about" security="none"/>
-    <http pattern="/assets/**" security="none"/>
+
+	 
+	<!-- Filter to store the Authentication object in the HTTP Session -->	
+	<bean id="securityContextPersistentFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
+		<property name="securityContextRepository" ref="securityContextRepository" />
+	</bean>
+	<bean id="securityContextRepository" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository" />
+
+
+	
+	<!-- Filter to manage the login process -->
+	<!-- The class org.springframework.security.web.authentication.AuthenticationProcessingFilter just extends UsernamePasswordAuthenticationFilter -->
+	<bean id="authenticationProcessingFilter" class="fr.getlinks.security.ReCaptchaAuthenticationFilter">
+  		<property name="authenticationManager" ref="authenticationManager"/>
+  		<property name="filterProcessesUrl" value="/authentication"/>
+  		<property name="authenticationSuccessHandler">
+	        <bean class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+	        	<property name="alwaysUseDefaultTargetUrl" value="true"/>
+	            <property name="defaultTargetUrl" value="/home" />
+	        </bean>
+	    </property>
+	    <property name="authenticationFailureHandler">
+	    	<bean class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+	            <property name="defaultFailureUrl" value="/login?error=1" />
+	        </bean>
+	    </property>
+	    <property name="privateKey" value="6LfGO9USAAAAAFcqmDHv_n0kdJXiNXiIzKpdwfvh"/>
+	</bean> 
+	
+    <!-- 
+	 <sec:authentication-manager alias="authenticationManager">
+        <sec:authentication-provider ref="techwebAuthenticationProvider"/>
+    </sec:authentication-manager>
+    -->
     
+    <bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+		<property name="providers">
+	    	<list>
+	        	<ref bean="onlineLibraryAuthenticationProvider" />
+	            <ref bean="anonymousProvider" />
+	        </list>
+	    </property>
+	</bean>
+    
+    <bean id="anonymousProvider" class="org.springframework.security.authentication.AnonymousAuthenticationProvider">
+        <property name="key" value="unique_key_123" />
+    </bean>
+    
+    <bean id="onlineLibraryAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="userDetailsService" />
+	</bean>
 	
-	<beans:bean id="ajaxTimeoutRedirectFilter" class="fr.getlinks.security.AjaxTimeoutRedirectFilter">
-		<beans:property name="customSessionExpiredErrorCode" value="${ajax.session.timeout.http.code}"/>
-	</beans:bean>
+	<sec:user-service id="userDetailsService">
+        <sec:user name="magdou" password="password" authorities="ROLE_USER"/>
+        <sec:user name="duyhai" password="password" authorities="ROLE_USER"/>
+    </sec:user-service>
+    
+
+	<bean id="anonymousFilter" class="org.springframework.security.web.authentication.AnonymousAuthenticationFilter" >
+	    <property name="key" value="unique_key_123" />
+	    <property name="userAttribute" value="anonymousUser,ROLE_ANONYMOUS" />
+	</bean>
+
+ 	<!-- Filter to redirect to login page -->
+	<bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter">
+        <property name="authenticationEntryPoint" ref="authenticationEntryPoint"/>
+        <property name="accessDeniedHandler" ref="accessDeniedHandler"/>
+    </bean>
+    
+    <!-- The class org.springframework.security.web.authentication.AuthenticationEntryPoint just extends LoginUrlAuthenticationEntryPoint -->
+	<bean id="authenticationEntryPoint"  class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+	  <property name="loginFormUrl" value="/login"/>
+	  <property name="forceHttps" value="false"/>
+	</bean>
+    
+	<bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+  		<property name="errorPage" value="/accessDenied"/>
+	</bean>
+
 	
-    <http auto-config="true" use-expressions="true">
-    	<remember-me key="ezfdf15er2" 
-    		user-service-ref="userDetailsService"
-    	/>
-    	
-    	<custom-filter ref="ajaxTimeoutRedirectFilter" after="EXCEPTION_TRANSLATION_FILTER"/>
-    	 
-<!--     	<custom-filter ref="reCaptchaFilter" before="FORM_LOGIN_FILTER"/> -->
-<!--     	<custom-filter ref="reCaptchaVerifier" after="FORM_LOGIN_FILTER"/> -->
-    	
-        <intercept-url pattern="/**" access="isAuthenticated()" />
-        <form-login
-                login-processing-url="/authentication"
-                login-page="/login"
-                authentication-failure-url="/login?error=true"
-                default-target-url="/home"
-                always-use-default-target="true"
-                authentication-success-handler-ref="getlinksAuthenticationSuccessHandler"/>
-        
-        <logout logout-url="/logout"
-                logout-success-url="/login"/>
-    </http>
 	
-	<authentication-manager>
-	</authentication-manager>
-	
-    <authentication-manager>
-        <authentication-provider user-service-ref="userDetailsService"/>
-    </authentication-manager>
-	
-    <user-service id="userDetailsService">
-        <user name="magdou" password="password" authorities="ROLE_USER"/>
-        <user name="duyhai" password="password" authorities="ROLE_USER"/>
-    </user-service>
-	
-	<beans:bean id="reCaptchaFilter" class="fr.getlinks.security.ReCaptchaFilter"/>
-	<beans:bean id="reCaptchaVerifier" class="fr.getlinks.security.ReCaptchaVerifier">
-		<beans:property name="reCaptchaFilter" ref="reCaptchaFilter"/>
-	</beans:bean>
-</beans:beans>
+	<!-- Filter for role checking -->
+	<bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="accessDecisionManager" ref="httpRequestAccessDecisionManager"/>
+        <property name="securityMetadataSource">
+            <sec:filter-security-metadata-source 
+            	lowercase-comparisons="true" 
+            	request-matcher="ant"
+            	use-expressions="true">
+            	
+                <sec:intercept-url pattern="/login" access="permitAll"/>
+                <sec:intercept-url pattern="/logout" access="permitAll"/>
+                <sec:intercept-url pattern="/about" access="permitAll"/>
+                <sec:intercept-url pattern="/assets/**" access="permitAll"/>               
+                <sec:intercept-url pattern="/**" access="isAuthenticated()"/>
+            </sec:filter-security-metadata-source>
+        </property>
+    </bean>
+ 	
+
+    <bean id="httpRequestAccessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <property name="allowIfAllAbstainDecisions" value="false"/>
+        <property name="decisionVoters">
+            <list>
+                <ref bean="webExpressionVoter"/>
+                <ref bean="authenticatedVoter"/>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="webExpressionVoter" class="org.springframework.security.web.access.expression.WebExpressionVoter"/>
+	<bean id="authenticatedVoter" class="org.springframework.security.access.vote.AuthenticatedVoter" />
+
+	<bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+	    <constructor-arg value="/login" />
+	    <constructor-arg>
+	        <list>
+	        	<bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+	        </list>
+	    </constructor-arg>
+	    <property name="filterProcessesUrl" value="/logout"/>
+	</bean>
+    
+	<bean id="ajaxTimeoutRedirectFilter" class="fr.getlinks.security.AjaxTimeoutRedirectFilter">
+		<property name="customSessionExpiredErrorCode" value="${ajax.session.timeout.http.code}"/>
+	</bean>
+</beans>	

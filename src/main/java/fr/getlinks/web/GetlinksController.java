@@ -9,6 +9,7 @@ import org.springframework.mobile.device.DeviceUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.getlinks.web.view.ViewConstants;
 
@@ -23,11 +24,11 @@ public class GetlinksController
 	private final Logger log = LoggerFactory.getLogger(GetlinksController.class);
 
 	@RequestMapping(ViewConstants.URL_LOGIN)
-	public String loginPage(HttpServletRequest servletRequest)
+	public String loginPage(@RequestParam(value = "error", required = false) Integer errorCode, Model model, HttpServletRequest servletRequest)
 	{
 		Device currentDevice = DeviceUtils.getCurrentDevice(servletRequest);
 
-		log.info("Current device is mobile : " + currentDevice.isMobile());
+		log.info("Is current device mobile : " + currentDevice.isMobile());
 
 		if (currentDevice.isMobile())
 		{
@@ -35,6 +36,21 @@ public class GetlinksController
 		}
 		else
 		{
+
+			if (errorCode != null)
+			{
+				if (errorCode.equals(1))
+				{
+					model.addAttribute("authenticationError", true);
+				}
+				else if (errorCode.equals(2))
+				{
+					String login = servletRequest.getParameter("j_username");
+					model.addAttribute("reCaptchaError", true);
+					model.addAttribute("login", login);
+				}
+			}
+
 			return ViewConstants.PAGE_LOGIN;
 		}
 
