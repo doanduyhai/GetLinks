@@ -14,7 +14,8 @@
 	
 	<import resource="classpath:getlinks-properties.xml"/>
 	
-	<mvc:resources location="/assets/img/" mapping="/assets/img/**" /> 
+	<mvc:resources location="/assets/img/" mapping="/assets/img/**" />
+	<mvc:resources location="/assets/network/" mapping="/assets/network/**" />  
 	<mvc:resources location="/assets/css/" mapping="/assets/css/**" />
 	<mvc:resources location="/assets/js/" mapping="/assets/js/**" />
 	
@@ -105,6 +106,7 @@
 		<property name="mediaTypes">
 			<map>
 				<entry key="html" value="text/html"/>
+				<!-- <entry key="text" value="text/plain"/> -->
 				<entry key="pdf" value="application/pdf"/>
 				<entry key="xsl" value="application/vnd.ms-excel"/>
 				<entry key="xml" value="application/xml"/>
@@ -132,5 +134,5 @@
 	</bean>
 	
 	<bean id="getlinksController" class="fr.getlinks.web.GetlinksController" />
-
+	<bean id="fragmentsController" class="fr.getlinks.web.FragmentsController" />
 </beans>

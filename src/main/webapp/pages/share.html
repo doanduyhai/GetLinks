@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+
+  <head th:substituteby="templates/desktop :: header" />	
+  <body>
+
+	<div id="topbar-home" th:substituteby="templates/desktop :: topbar-home"></div>
+	<br/><br/>
+	<div class="row center">
+		<p class="alert offset4 span5">
+			Xxx would like to share with you his/her network(s)
+		</p>	
+	</div>
+	<br/><br/>
+	<div class="offset4 row center" th:each="network,rowStat : ${networks}">
+		<div class="span4 right">
+			<img th:src="@{'/assets/network/' + ${network.image}}"></img>
+		</div>
+		<div class="span8 left paddingtop">
+			<a th:href="${network.url}" th:text="${network.url}" target="_blank"></a>
+		</div>
+		<br/>	
+	</div>
+	<footer id="center-footer" th:substituteby="templates/desktop :: footer"></footer>
+  </body>
+</html>

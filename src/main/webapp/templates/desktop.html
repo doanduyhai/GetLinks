@@ -20,7 +20,7 @@
   	</head>
 	<body>
 		<!-- TOP BAR Templates -->
-		<div id="topbar-login" th:fragment="topbar-login" class="navbar navbar-fixed-top topbar">
+		<div id="topbar-login" th:fragment="topbar-login" class="navbar navbar-fixed-top topbar navbar-inverse">
 			<div class="navbar-inner">
 				<div class="container">
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -38,7 +38,7 @@
 			</div>
 		</div>
 		
-		<div id="topbar-about" th:fragment="topbar-about" class="navbar navbar-fixed-top topbar" >
+		<div id="topbar-about" th:fragment="topbar-about" class="navbar navbar-fixed-top topbar navbar-inverse" >
 			<div class="navbar-inner">
 				<div class="container">
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -60,7 +60,7 @@
 			</div>
 		</div>
 		
-		<div id="topbar-home" th:fragment="topbar-home" class="navbar navbar-fixed-top topbar" >
+		<div id="topbar-home" th:fragment="topbar-home" class="navbar navbar-fixed-top topbar navbar-inverse" >
 			<div class="navbar-inner">
 				<div class="container">
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -84,23 +84,53 @@
 	    		
 		<!-- FOOTER Templates -->							
 		<footer id="center-footer" th:fragment="footer">
-       		<div id="footerText" class="span12" >Copyright 2012 <a href="http://www.getlinks.fr">GetLinks</a> |
-            	<a href="https://twitter.com/#!/getlinksfr">Follow @getlinksfr on Twitter</a>
+			<div id="footerMenu" class="row-fluid footerBadge" style="padding-bottom: 15px;">
+				<div class="offset3 span9">
+					<div class="span2">
+						<span class="badge badge-info">
+							<a href="about">FAQ/DEMO</a>
+						</span>
+					</div>
+					
+					<div class="span2">
+						<span class="badge badge-info">
+							<a href="about">About Us</a>
+						</span>
+					</div>
+					
+					<div class="span2">
+						<span class="badge badge-info">
+							<a href="about">Contact Us</a>
+						</span>					
+					</div>
+					
+					<div class="span2">
+						<span class="badge badge-info">
+							<a href="about">Terms &amp; Conditions</a>
+						</span>					
+					</div>
+				</div>				
+			</div>
+       		<div id="footerText" class="span12 footer" >Copyright 2012 <a href="http://www.getlinks.fr">GetLinks</a> |
+            	<a href="https://twitter.com/getlinkfr" target="_blank">Follow @getlinksfr on Twitter</a>
        		</div>
        		<script src="assets/js/jquery.js" th:src="@{/assets/js/jquery.js}"></script>
        		<script src="assets/js/less-1.2.1.js" th:src="@{/assets/js/less-1.2.1.js}"></script>
 			<script src="assets/js/bootstrap.js" th:src="@{/assets/js/bootstrap.js}"></script>		
 		</footer>
 		
-		<div id="home-javascript" th:fragment="home-javascript">
+	<div id="home-javascript" th:fragment="home-javascript">
 			<script th:inline="javascript">
 				/*<![CDATA[*/
 				
-        		var login =  /*[[${sec.principal.username}]]*/ "doanduyhai";
+        		var login =  /*[[${sec.principal.username}]]*/ "duyhai";
             	
             	/*]]>*/
         	</script>
-
+        	<script src="/js/constants.js" th:src="@{/js/constants.js}"></script>
+        	<script src="/assets/js/desktop/links.js" th:src="@{/assets/js/desktop/links.js}"></script>
+			<script src="/assets/js/desktop/fragments.js" th:src="@{/assets/js/desktop/fragments.js}"></script>        	
+        	<script src="/assets/js/desktop/init.js" th:src="@{/assets/js/desktop/init.js}"></script>				  
 		</div>
 	</body>
 </html>

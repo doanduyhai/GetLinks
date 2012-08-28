@@ -21,6 +21,8 @@ import org.thymeleaf.util.StringUtils;
 
 public class ReCaptchaAuthenticationFilter extends UsernamePasswordAuthenticationFilter implements InitializingBean
 {
+	private final String CAPTCHA_CHALLENGE_FIELD = "recaptcha_challenge_field";
+	private final String CAPTCHA_RESPONSE_FIELD = "recaptcha_response_field";
 	private final ReCaptchaImpl reCaptcha;
 	private String privateKey;
 	private final Logger log = LoggerFactory.getLogger(ReCaptchaAuthenticationFilter.class);
@@ -32,8 +34,8 @@ public class ReCaptchaAuthenticationFilter extends UsernamePasswordAuthenticatio
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException
 	{
 
-		String reCaptchaChallenge = request.getParameter("recaptcha_challenge_field");
-		String reCaptchaResponse = request.getParameter("recaptcha_response_field");
+		String reCaptchaChallenge = request.getParameter(CAPTCHA_CHALLENGE_FIELD);
+		String reCaptchaResponse = request.getParameter(CAPTCHA_RESPONSE_FIELD);
 		String remoteAddress = request.getRemoteAddr();
 
 		if (!StringUtils.isEmpty(reCaptchaChallenge))

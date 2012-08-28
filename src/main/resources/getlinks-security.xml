@@ -11,7 +11,8 @@
 		    <sec:filter-chain pattern="/**"  filters="
 		           securityContextPersistentFilter,
 		           logoutFilter,
-		           authenticationProcessingFilter,
+		           formLoginFilter,
+		           rememberMeAuthenticationFilter,
 		           anonymousFilter,
 		           exceptionTranslationFilter,
 		           ajaxTimeoutRedirectFilter,
@@ -20,6 +21,32 @@
 	  	</sec:filter-chain-map>
 	</bean>
 
+<!-- 
+	Filters order:
+	
+    CHANNEL_FILTER,
+    CONCURRENT_SESSION_FILTER,
+    SECURITY_CONTEXT_FILTER,
+    LOGOUT_FILTER,
+    X509_FILTER,
+    PRE_AUTH_FILTER,
+    CAS_FILTER,
+    FORM_LOGIN_FILTER,
+    OPENID_FILTER,
+    LOGIN_PAGE_FILTER,
+    DIGEST_AUTH_FILTER,
+    BASIC_AUTH_FILTER,
+    REQUEST_CACHE_FILTER,
+    SERVLET_API_SUPPORT_FILTER,
+    JAAS_API_SUPPORT_FILTER,
+    REMEMBER_ME_FILTER,
+    ANONYMOUS_FILTER,
+    SESSION_MANAGEMENT_FILTER,
+    EXCEPTION_TRANSLATION_FILTER,
+    FILTER_SECURITY_INTERCEPTOR,
+    SWITCH_USER_FILTER,
+    
+ -->
 
 	 
 	<!-- Filter to store the Authentication object in the HTTP Session -->	
@@ -32,7 +59,7 @@
 	
 	<!-- Filter to manage the login process -->
 	<!-- The class org.springframework.security.web.authentication.AuthenticationProcessingFilter just extends UsernamePasswordAuthenticationFilter -->
-	<bean id="authenticationProcessingFilter" class="fr.getlinks.security.ReCaptchaAuthenticationFilter">
+	<bean id="formLoginFilter" class="fr.getlinks.security.ReCaptchaAuthenticationFilter">
   		<property name="authenticationManager" ref="authenticationManager"/>
   		<property name="filterProcessesUrl" value="/authentication"/>
   		<property name="authenticationSuccessHandler">
@@ -46,20 +73,20 @@
 	            <property name="defaultFailureUrl" value="/login?error=1" />
 	        </bean>
 	    </property>
+	    <property name="sessionAuthenticationStrategy">
+        	<bean class="org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy" />
+    	</property>
+    	<property name="rememberMeServices" ref="rememberMeServices"/>
 	    <property name="privateKey" value="6LfGO9USAAAAAFcqmDHv_n0kdJXiNXiIzKpdwfvh"/>
 	</bean> 
-	
-    <!-- 
-	 <sec:authentication-manager alias="authenticationManager">
-        <sec:authentication-provider ref="techwebAuthenticationProvider"/>
-    </sec:authentication-manager>
-    -->
+
     
     <bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
 		<property name="providers">
 	    	<list>
-	        	<ref bean="onlineLibraryAuthenticationProvider" />
+	        	<ref bean="authenticationProvider" />
 	            <ref bean="anonymousProvider" />
+	            <ref bean="rememberMeAuthenticationProvider"/>
 	        </list>
 	    </property>
 	</bean>
@@ -68,7 +95,7 @@
         <property name="key" value="unique_key_123" />
     </bean>
     
-    <bean id="onlineLibraryAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+    <bean id="authenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
 		<property name="userDetailsService" ref="userDetailsService" />
 	</bean>
 	
@@ -77,7 +104,22 @@
         <sec:user name="duyhai" password="password" authorities="ROLE_USER"/>
     </sec:user-service>
     
-
+	<bean id="rememberMeAuthenticationFilter" class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
+		<constructor-arg index="0" ref="authenticationManager"/>
+		<constructor-arg index="1" ref="rememberMeServices"/>
+	</bean>
+		
+	<bean id="rememberMeServices" class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices"> 
+	    <property name="userDetailsService" ref="userDetailsService" /> 
+	    <property name="key" value="sd1ze4sd" /> 
+	    <property name="tokenValiditySeconds" value="10800" />
+	    <property name="alwaysRemember" value="true"/> 
+	</bean>
+	
+	<bean id="rememberMeAuthenticationProvider" class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+		<constructor-arg value="sd1ze4sd"/>
+	</bean>
+	
 	<bean id="anonymousFilter" class="org.springframework.security.web.authentication.AnonymousAuthenticationFilter" >
 	    <property name="key" value="unique_key_123" />
 	    <property name="userAttribute" value="anonymousUser,ROLE_ANONYMOUS" />
@@ -112,8 +154,8 @@
             	use-expressions="true">
             	
                 <sec:intercept-url pattern="/login" access="permitAll"/>
-                <sec:intercept-url pattern="/logout" access="permitAll"/>
                 <sec:intercept-url pattern="/about" access="permitAll"/>
+                <sec:intercept-url pattern="/share/**" access="permitAll"/>
                 <sec:intercept-url pattern="/assets/**" access="permitAll"/>               
                 <sec:intercept-url pattern="/**" access="isAuthenticated()"/>
             </sec:filter-security-metadata-source>

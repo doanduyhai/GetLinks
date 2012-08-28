@@ -7,10 +7,10 @@
   <body>
 
 	<div id="topbar-home" th:substituteby="templates/desktop :: topbar-home"></div>
-
+	<!-- 
 	<div class="container">
+	 -->
 		<div class="row-fluid">
-			<div class="span12">
 				<div class="tabbable">
                     <ul class="nav nav-tabs">  
 						<li class="active">
@@ -27,10 +27,15 @@
 							<a id="generateLinkTab" href="#generateLinkPanel" data-toggle="pill">
 								<img src="/assets/img/generate_link.png" th:src="@{/assets/img/generate_link.png}"></img> Generate Links
 							</a>
-						</li>
+						</li>						
 						<li>
 							<a id="profileTab" href="#profilePanel" data-toggle="pill">
 								<img src="/assets/img/profile_edit.png" th:src="@{/assets/img/profile_edit.png}"></img> My Profile
+							</a>
+						</li>						
+						<li>
+							<a id="demoTab" href="#demoPanel" data-toggle="pill">
+								<img src="/assets/img/demo.png" th:src="@{/assets/img/demo.png}"></img> Demo
 							</a>
 						</li>
 						<li>
@@ -39,17 +44,12 @@
 							</a>
 						</li>
 						<li>
-							<a id="faqTab" href="#faqPanel" data-toggle="pill">
-								<img src="/assets/img/faq.png" th:src="@{/assets/img/faq.png}"></img> F.A.Q
-							</a>
-						</li>
-						<li>
-							<a id="contactUsTab" href="#contactUsPanel" data-toggle="pill">
-								<img src="/assets/img/contact_us.png" th:src="@{/assets/img/contact_us.png}"></img> Contact Us
+							<a id="miscTab" href="#miscPanel" data-toggle="pill">
+								<img src="/assets/img/misc.png" th:src="@{/assets/img/misc.png}"></img> Misc.
 							</a>
 						</li>																										
 					</ul>
-					<div id="panels" class="tab-content alert alert-info">
+					<div id="panels" class="tab-content">
 						<div class="tab-pane center active" id="myNetworkPanel">
 							<h2>My Network</h2>
 							xxx		
@@ -60,34 +60,26 @@
 						<div class="tab-pane center" id="generateLinkPanel">
 							<h2>Generate Links</h2>
 														
+						</div>						
+						<div class="tab-pane center" id="demoPanel">
+							<h2>Demo</h2>		
 						</div>
 						<div class="tab-pane center" id="profilePanel">
-							<h2>My Profile</h2>
-																					
-																					
+							<h2>My Profile</h2>						
 						</div>
 						<div class="tab-pane center" id="getAppsPanel">
-							<h2>Download the Mobile App</h2>
-																					
-																					
+							<h2>Download the Mobile App</h2>												
 						</div>
-						<div class="tab-pane center" id="faqPanel">
-							<h2>F.A.Q</h2>
-																					
-																					
+						<div class="tab-pane center" id="miscPanel">
+							<h2>Miscellaneous</h2>
 						</div>
-						<div class="tab-pane center" id="contactUsPanel">
-							<h2>Contact Us</h2>
-																					
-																					
-						</div>																															
 					</div>
 				</div>
-
-			</div>
 		</div>
-	</div>
+		
+	<!-- /div -->
 	<footer id="center-footer" th:substituteby="templates/desktop :: footer"></footer>
-			
+	<footer id="home-javascript" th:substituteby="templates/desktop :: home-javascript"></footer>
+				
   </body>
 </html>

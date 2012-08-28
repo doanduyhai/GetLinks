@@ -9,11 +9,34 @@
   <body>
 	<div id="topbar-login" th:substituteby="templates/desktop :: topbar-login"></div>
 	
+	<map name="ribbon">
+    	<area shape="poly" coords="0,0,500,0,0,500" 
+    		href="/about"
+    		th:href="@{/about}">
+    	</area>
+	</map>
+	<img src="assets/img/demo_ribbon.png"
+		th:src="@{/assets/img/demo_ribbon.png}" 
+		usemap="#ribbon" alt="Need a Demo ?"
+     	style="position:absolute;top:0;left:0;border:none;">
+     </img>
+	<br/><br/>
+   	<div id="create_account_banner" class="alert center pull-right">
+   		<a href="about">
+	   		<strong>New user</strong>,
+	   		<br/>
+	   		create your account
+	   		<br/>
+	   		in 2 minutes
+   		</a>
+   	</div>
+	<br/><br/>   	     
     <div class="container">
-        <div class="span5 offset4">
-            <h1>Authentication</h1>
-            <form action="authentication" th:action="@{/authentication}" method="post" class="well center">
-            	
+        <div class="span5 offset3">
+        	<br/><br/>
+        	<br/><br/>        	        	        	
+            <form action="authentication" th:action="@{/authentication}" method="post" 
+            	class="span8 center form-horizontal">
             	<br th:if="${authenticationError}"/>
             	<div th:if="${authenticationError}" class="alert alert-error">
             		Incorrect Login/Password
@@ -25,41 +48,64 @@
             		Incorrect reCaptcha
             	</div>
             	<br th:if="${reCaptchaError}"/>
-            	
-                <fieldset>
-                    <label>Login :</label> 
-                    	<input id="j_username" name="j_username"
-                        	type="text" required="required" autofocus="autofocus" class="input span3"
-                        	th:value="${login}"
-                            placeholder="Your login..."/>
-                    <label>Password :</label> 
-                    	<input id="j_password" name="j_password"
-                        	type="password" required="required" class="input span3"
-                            placeholder="Your password..."/>
-				<label class="checkbox left">
-	                <input type="checkbox"
-	                       name="_spring_security_remember_me" 
-	                       id="_spring_security_remember_me"
-	                       value="true" />&nbsp;Remember me
-            	</label>
-                                                     
-                </fieldset>
-                <br/>
-                Additional anti-bot authentication
-                <br/>
-                <script type="text/javascript"
-     				src="http://www.google.com/recaptcha/api/challenge?k=6LfGO9USAAAAABgtDaQ0_Q9RU4leCBFoSpqiUpLc">
-  				</script>
-  				<noscript>
-     				<iframe src="http://www.google.com/recaptcha/api/noscript?k=6LfGO9USAAAAABgtDaQ0_Q9RU4leCBFoSpqiUpLc"
-         			height="300" width="500"></iframe>
-         			<br/>
-     				<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
-     				<input type="hidden" name="recaptcha_response_field"
-         				value="manual_challenge"></input>
-  				</noscript>
-  				<br/>
-                <button type="submit" class="btn btn-success">Authenticate</button>
+            	 
+            	<div class="row-fluid">
+            		 <div class="span8">
+            		 	<div class="control-group">
+		                    <label class="control-label" for="j_username">Login :</label>
+		                    <div class="controls"> 
+		                    	<input id="j_username" name="j_username"
+		                        	type="text" required="required" autofocus="autofocus" class="input span12"
+		                        	th:value="${login}"
+		                            placeholder="Your login..."/>
+		                    </div>        
+						</div>
+						<div class="control-group">              
+		                    <label class="control-label" for="j_password">Password :</label>	                    
+		                    <div class="controls"> 
+		                    	<input id="j_password" name="j_password"
+		                        	type="password" required="required" class="input span12"
+		                            placeholder="Your password..."/>
+		                                
+		                    </div>	                            
+		                </div>
+	                </div>
+	                <div class="span3">
+	                 	<button id="authenticate_button" type="submit" 
+	                 		class="btn btn-large btn-block btn-success"
+	                 	>Authenticate</button>
+	                </div>
+				</div>
+				<div class="row-fluid">
+					<div class="span5">
+						<input type="checkbox"
+				           	name="_spring_security_remember_me" 
+				            id="_spring_security_remember_me"
+				            value="true">&nbsp;Remember me</input>
+					</div>
+					<div class="span7 left">
+						<a id="forgotten_password_link" href="about" class="span12">Forgotten password ?</a>					
+					</div>						
+
+				</div>
+                Please type the characters               
+                <div class="offset2 span4">
+	                <script type="text/javascript"
+	     				src="http://www.google.com/recaptcha/api/challenge?k=6LfGO9USAAAAABgtDaQ0_Q9RU4leCBFoSpqiUpLc">
+	  				</script>
+	  				<noscript>
+	     				<iframe 
+	     					src="http://www.google.com/recaptcha/api/noscript?k=6LfGO9USAAAAABgtDaQ0_Q9RU4leCBFoSpqiUpLc"
+	         				height="300" width="400"
+	         				>
+	         			</iframe>
+	         			<br/>
+	     				<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+	     				<input type="hidden" name="recaptcha_response_field"
+	         				value="manual_challenge"></input>
+	  				</noscript>
+  				</div>
+
             </form>
         </div>
     </div>
