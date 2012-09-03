@@ -15,6 +15,7 @@
 	<import resource="classpath:getlinks-properties.xml"/>
 	
 	<mvc:resources location="/assets/img/" mapping="/assets/img/**" />
+	<mvc:resources location="/assets/images/" mapping="/assets/images/**" />
 	<mvc:resources location="/assets/network/" mapping="/assets/network/**" />  
 	<mvc:resources location="/assets/css/" mapping="/assets/css/**" />
 	<mvc:resources location="/assets/js/" mapping="/assets/js/**" />

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+<div id="addNetworkContent" class="container">
+	<div class="row">
+		<br/><br/>
+	</div>
+	<div class="row center">
+		<div class="offset2 span3">
+			<div class="row inputLabel">Category :</div>
+			<div class="row inputLabel">Search by name :</div>
+		</div>
+		<div class="span3">
+			<div class="row">
+				<select>
+					<option value="GENERAL">General</option>
+					<option value="BLOG">Blog</option>
+					<option value="ART">Art</option>
+					<option value="COOKING">Cooking</option>
+					<option value="DATING">Dating</option>
+				</select>
+			</div>
+			<div class="row">
+				<input id="networkNameSearch" 
+					type="text" 
+					class="input-large"
+					placeholder="network name">
+				</input>
+			</div>			
+		</div>
+		<div class="span2">
+			<button id="networkFindButton" 
+				class="btn btn-block btn-success">Find!</button>
+		</div>
+	</div>
+	<br/><br/>
+	<p><strong>Selected networks</strong></p>
+	<div class="row">
+		<div class="offset5" id="myNetworksSelectionPanel">
+			 
+			<ul id="myNetworksSelection">
+				<li>
+					<img class="networkWidget"
+						src="../../assets/network/facebook.png" 
+						th:src="@{/assets/network/facebook.png}"/>
+				</li>
+				<li>
+					<img class="networkWidget"
+						src="../../assets/network/google_plus.png" 
+						th:src="@{/assets/network/google_plus.png}"/>
+				</li>
+			</ul>
+			
+		</div>
+	</div>
+	<br/><br/><br/>
+	<p><strong>Select and drag the network to selection area above</strong></p>
+	<br/>
+	<div class="row">
+		<div class="span4 right">
+			<button id="networkList_prevBtn" class="btn">
+				<i class="icon-chevron-left"></i>
+			</button>
+		</div>
+		<div class="row center span4" style="height:70px;">
+			<ul id="scroll" class="slider">
+				<li class="liItem">
+					<img class="networkWidget"
+						rel="tooltip" title="Twitter" 
+						src="../../assets/network/twitter.png" 
+						th:src="@{assets/network/twitter.png}"/>
+				</li>
+				<li class="liItem">
+					<img class="networkWidget"
+						rel="tooltip" title="LinkedIn" 
+						src="../../assets/network/linkedin.png" 
+						th:src="@{assets/network/linkedin.png}"/>
+				</li>
+				<li class="liItem">
+					<img class="networkWidget"
+						rel="tooltip" title="Wordpress" 
+						src="../../assets/network/wordpress.png" 
+						th:src="@{assets/network/wordpress.png}"/>
+				</li>
+				<li class="liItem">
+					<img class="networkWidget"
+						rel="tooltip" title="Aim" 
+						src="../../assets/network/aim.png" 
+						th:src="@{/assets/network/aim.png}"/>
+				</li>
+				<li class="liItem">
+					<img class="networkWidget"
+						rel="tooltip" title="Blogger" 
+						src="../../assets/network/blogger.png" 
+						th:src="@{/assets/network/blogger.png}"/>
+				</li>
+				<li class="liItem">
+					<img class="networkWidget"
+						rel="tooltip" title="Delicious" 
+						src="../../assets/network/delicious.png" 
+						th:src="@{assets/network/delicious.png}"/>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="span4 left">
+			<button id="networkList_nextBtn" class="btn">
+				<i class="icon-chevron-right"></i>
+			</button>
+		</div>
+	</div>	
+
+</div>
+</html>
