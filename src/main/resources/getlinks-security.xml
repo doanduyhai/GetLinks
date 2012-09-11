@@ -113,7 +113,8 @@
 	    <property name="userDetailsService" ref="userDetailsService" /> 
 	    <property name="key" value="sd1ze4sd" /> 
 	    <property name="tokenValiditySeconds" value="10800" />
-	    <property name="alwaysRemember" value="true"/> 
+	    <property name="alwaysRemember" value="true"/>
+	    <property name="cookieName" value="GETLINK_REMEMBER_ME_COOKIE"/> 
 	</bean>
 	
 	<bean id="rememberMeAuthenticationProvider" class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
@@ -156,6 +157,7 @@
                 <sec:intercept-url pattern="/login" access="permitAll"/>
                 <sec:intercept-url pattern="/about" access="permitAll"/>
                 <sec:intercept-url pattern="/share/**" access="permitAll"/>
+                <sec:intercept-url pattern="/activate/**" access="permitAll"/>
                 <sec:intercept-url pattern="/assets/**" access="permitAll"/>               
                 <sec:intercept-url pattern="/**" access="isAuthenticated()"/>
             </sec:filter-security-metadata-source>
@@ -180,7 +182,10 @@
 	    <constructor-arg value="/login" />
 	    <constructor-arg>
 	        <list>
-	        	<bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+	        	<bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
+	        	<bean class="org.springframework.security.web.authentication.logout.CookieClearingLogoutHandler">
+	        		<constructor-arg value="GETLINK_REMEMBER_ME_COOKIE" />
+	        	</bean>
 	        </list>
 	    </constructor-arg>
 	    <property name="filterProcessesUrl" value="/logout"/>

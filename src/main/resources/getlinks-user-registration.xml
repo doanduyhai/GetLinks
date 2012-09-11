@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean id="randomStringGenerator" class="fr.getlinks.service.registration.impl.RandomStringGeneratorImpl"/>
+	
+	<bean id="registrationMailSender" class="fr.getlinks.service.registration.impl.RegistrationMailSenderImpl">
+		<property name="mailService" ref="mailService"/>
+		<property name="registrationEmailTemplate" value="welcomeMail.html"/>
+		<property name="reactivationEmailTemplate" value="reactivationMail.html"/>
+	</bean>
+	
+	<bean id="userRegistrationModule" class="fr.getlinks.service.registration.impl.UserRegistrationModuleImpl">
+		<property name="randomStringGenerator" ref="randomStringGenerator"/>
+		<property name="registrationMailSender" ref="registrationMailSender"/>
+		<property name="userRegistrationRepository" ref="userRegistrationRepository"/>
+	</bean>
+</beans>

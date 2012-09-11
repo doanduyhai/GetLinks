@@ -5,5 +5,7 @@
 
 	<import resource="classpath:getlinks-security.xml"/>
 	<import resource="classpath:getlinks-properties.xml"/>
-	
+	<import resource="classpath:getlinks-mail.xml"/>
+	<import resource="classpath:getlinks-repository.xml"/>
+	<import resource="classpath:getlinks-user-registration.xml"/>
 </beans>

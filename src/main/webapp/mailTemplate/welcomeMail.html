@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:remove="all">Welcome to Getlinks</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <p th:inline="text">
+        	Hello, <strong>[[${userName}]]!</strong>
+        </p>
+        <br/>
+        <p th:inline="text">
+        	[[${message}]]
+        </p>
+        
+        <footer style="text-align:left">
+        	<h3>Getlinks</h3>
+        	<strong><em>One link, all networks</em></strong><br/>
+        	<a href="http://www.getlinks.fr" target="_blank">http://www.getlinks.fr</a><br/>
+        	Follow us on Twitter <strong><a href="https://twitter.com/getlinkfr" target="_blank">@getlinksfr</a></strong>
+        </footer>
+    </body>
+</html> 

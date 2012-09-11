@@ -13,12 +13,19 @@ public class ViewConstants
 
 	public static final String URL_ABOUT = "/about";
 
+	public static final String URL_ACTIVATE = "/activate/{randomToken}";
+
 	public static final String PAGE_LOGIN = "pages/login";
 
 	public static final String PAGE_HOME = "pages/home";
 
 	public static final String PAGE_ABOUT = "pages/about";
 
+	/*
+	 * View constants
+	 */
+	public static final String VIEW_USER_ACTIVATION = "pages/registration/activation";
+	public static final String VIEW_USER_ACTIVATION_INVALID = "pages/registration/notFound";
 	/*
 	 * Mobile URLS & views
 	 */
