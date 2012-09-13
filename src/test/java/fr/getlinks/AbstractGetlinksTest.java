@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeSuite;
 import fr.getlinks.repository.UserRegistrationRepository;
 import fr.getlinks.service.mail.MailService;
 import fr.getlinks.service.registration.RegistrationMailSender;
-import fr.getlinks.service.registration.UserRegistrationModule;
+import fr.getlinks.service.registration.UserRegistrationService;
 import fr.getlinks.service.registration.impl.RandomStringGeneratorImpl;
 
 @ContextConfiguration(locations =
@@ -36,7 +36,7 @@ public abstract class AbstractGetlinksTest extends AbstractTestNGSpringContextTe
 	protected RegistrationMailSender registrationMailSender;
 
 	@Inject
-	protected UserRegistrationModule userRegistrationModule;
+	protected UserRegistrationService userRegistrationService;
 
 	@Inject
 	protected EntityManagerImpl entityManager;

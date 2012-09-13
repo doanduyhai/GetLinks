@@ -9,11 +9,17 @@
 		<property name="mailService" ref="mailService"/>
 		<property name="registrationEmailTemplate" value="welcomeMail.html"/>
 		<property name="reactivationEmailTemplate" value="reactivationMail.html"/>
+		<property name="resetPasswordEmailTemplate" value="resetPasswordMail.html"/>
 	</bean>
 	
-	<bean id="userRegistrationModule" class="fr.getlinks.service.registration.impl.UserRegistrationModuleImpl">
+	<bean id="userRegistrationService" class="fr.getlinks.service.registration.impl.UserRegistrationServiceImpl">
 		<property name="randomStringGenerator" ref="randomStringGenerator"/>
 		<property name="registrationMailSender" ref="registrationMailSender"/>
 		<property name="userRegistrationRepository" ref="userRegistrationRepository"/>
+		<property name="passwordEncoder" ref="passwordEncoder"/>
 	</bean>
+	
+	<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+		<constructor-arg value="256"/>
+	</bean>	
 </beans>

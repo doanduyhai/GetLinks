@@ -139,6 +139,6 @@
 	<bean id="getlinksController" class="fr.getlinks.web.controller.GetlinksController" />
 	<bean id="fragmentsController" class="fr.getlinks.web.controller.FragmentsController" />
 	<bean id="registrationController" class="fr.getlinks.web.controller.RegistrationController">
-		<property name="userRegistrationModule" ref="userRegistrationModule"/>
+		<property name="userRegistrationService" ref="userRegistrationService"/>
 	</bean>
 </beans>

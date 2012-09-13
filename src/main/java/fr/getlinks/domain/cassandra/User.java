@@ -24,6 +24,9 @@ public class User
 	@Column(name = "passwordHash")
 	private String passwordHash;
 
+	@Column(name = "salt")
+	private String salt;
+
 	@Column(name = "firstname")
 	private String firstname;
 
@@ -52,7 +55,17 @@ public class User
 	@Column(name = "active")
 	private boolean active = false;
 
+	@Column(name = "shouldChangePassword")
+	private boolean shouldChangePassword = false;
+
 	public User() {}
+
+	public User(String login, String passwordHash, String salt) {
+		super();
+		this.login = login;
+		this.passwordHash = passwordHash;
+		this.salt = salt;
+	}
 
 	public User(String login, String passwordHash, String firstname, String lastname, String contactEmail, boolean active) {
 		super();

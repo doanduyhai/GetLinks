@@ -5,14 +5,15 @@ import java.text.MessageFormat;
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
 
 import fr.getlinks.domain.cassandra.User;
 import fr.getlinks.repository.UserRegistrationRepository;
 import fr.getlinks.service.registration.RandomStringGenerator;
 import fr.getlinks.service.registration.RegistrationMailSender;
-import fr.getlinks.service.registration.UserRegistrationModule;
+import fr.getlinks.service.registration.UserRegistrationService;
 
-public class UserRegistrationModuleImpl implements UserRegistrationModule
+public class UserRegistrationServiceImpl implements UserRegistrationService
 {
 	@Value("${registration.welcome.message}")
 	String welcomeMessage;
@@ -20,14 +21,23 @@ public class UserRegistrationModuleImpl implements UserRegistrationModule
 	@Value("${registration.reactivate.message}")
 	String reactivationMessage;
 
+	@Value("${registration.reset.password.message}")
+	String resetPasswordMessage;
+
+	private PasswordEncoder passwordEncoder;
+
 	private RandomStringGenerator randomStringGenerator;
 	private RegistrationMailSender registrationMailSender;
 	private UserRegistrationRepository userRegistrationRepository;
 	private static final String ACTIVATION_URL_PREFIX = "http://localhost:8080/getlinks/activate/";
 
 	@Override
-	public String registerUser(User user) throws MessagingException
+	public String registerUser(User user, String clearPassword) throws MessagingException
 	{
+		String salt = this.randomStringGenerator.generateRandomString(8);
+		String hashedPassword = this.passwordEncoder.encodePassword(clearPassword, salt);
+		user.setSalt(salt);
+		user.setPasswordHash(hashedPassword);
 
 		String randomString = this.randomStringGenerator.generateRandomTimestampString(16);
 		user.setActive(false);
@@ -65,6 +75,20 @@ public class UserRegistrationModuleImpl implements UserRegistrationModule
 	}
 
 	@Override
+	public void generateResetPasswordEmail(User user) throws MessagingException
+	{
+		String salt = this.randomStringGenerator.generateRandomString(8);
+		String newPassword = this.randomStringGenerator.generateRandomString(8);
+		String hashedPassword = this.passwordEncoder.encodePassword(newPassword, salt);
+		user.setSalt(salt);
+		user.setPasswordHash(hashedPassword);
+		user.setShouldChangePassword(true);
+		this.userRegistrationRepository.saveUser(user);
+		String message = MessageFormat.format(resetPasswordMessage, newPassword);
+		this.registrationMailSender.sendResetPasswordEmail(user.getContactEmail(), user.getFirstname(), message);
+	}
+
+	@Override
 	public void setUserRegistrationRepository(UserRegistrationRepository userRegistrationRepository)
 	{
 		this.userRegistrationRepository = userRegistrationRepository;
@@ -82,4 +106,9 @@ public class UserRegistrationModuleImpl implements UserRegistrationModule
 		this.registrationMailSender = registrationMailSender;
 	}
 
+	@Override
+	public void setPasswordEncoder(PasswordEncoder passwordEncoder)
+	{
+		this.passwordEncoder = passwordEncoder;
+	}
 }

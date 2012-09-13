@@ -6,20 +6,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.getlinks.domain.cassandra.User;
-import fr.getlinks.service.registration.UserRegistrationModule;
+import fr.getlinks.service.registration.UserRegistrationService;
 import fr.getlinks.web.view.ViewConstants;
 
 @Controller
 public class RegistrationController
 {
 
-	private UserRegistrationModule userRegistrationModule;
+	private UserRegistrationService userRegistrationService;
 
 	@RequestMapping(value = ViewConstants.URL_ACTIVATE, method = RequestMethod.GET)
 	public String activateUser(@PathVariable("randomToken") String randomToken)
 	{
 
-		User activatedUser = userRegistrationModule.activateUser(randomToken);
+		User activatedUser = userRegistrationService.activateUser(randomToken);
 		if (activatedUser != null)
 		{
 			return ViewConstants.VIEW_USER_ACTIVATION;
@@ -30,9 +30,9 @@ public class RegistrationController
 		}
 	}
 
-	public void setUserRegistrationModule(UserRegistrationModule userRegistrationModule)
+	public void setUserRegistrationService(UserRegistrationService userRegistrationService)
 	{
-		this.userRegistrationModule = userRegistrationModule;
+		this.userRegistrationService = userRegistrationService;
 	}
 
 }

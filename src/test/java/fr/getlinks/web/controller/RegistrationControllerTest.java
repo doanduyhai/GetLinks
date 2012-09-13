@@ -16,7 +16,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import fr.getlinks.domain.cassandra.User;
-import fr.getlinks.service.registration.UserRegistrationModule;
+import fr.getlinks.service.registration.UserRegistrationService;
 import fr.getlinks.web.controller.testLoader.TestGenericWebXmlContextLoader;
 import fr.getlinks.web.view.ViewConstants;
 
@@ -33,7 +33,7 @@ public class RegistrationControllerTest extends AbstractTestNGSpringContextTests
 	private MockMvc mockedRegistrationController;
 
 	@Inject
-	private UserRegistrationModule mockedRegistrationModule;
+	private UserRegistrationService mockedRegistrationModule;
 
 	private User user;
 
@@ -44,7 +44,7 @@ public class RegistrationControllerTest extends AbstractTestNGSpringContextTests
 
 		user = new User("doanduyhai", "test", "DuyHai", "DOAN", "doanduyhai@gmail.com", true);
 		RegistrationController registrationController = new RegistrationController();
-		registrationController.setUserRegistrationModule(mockedRegistrationModule);
+		registrationController.setUserRegistrationService(mockedRegistrationModule);
 		mockedRegistrationController = MockMvcBuilders.webApplicationContextSetup(this.wac).build();
 	}
 

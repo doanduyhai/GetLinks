@@ -14,9 +14,11 @@ public class RegistrationMailSenderImpl implements RegistrationMailSender
 
 	private String registrationEmailTemplate;
 	private String reactivationEmailTemplate;
+	private String resetPasswordEmailTemplate;
 	private MailService mailService;
 	private static final String REGISTRATION_EMAIL_SUBJECT = "Getlinks Activation";
 	private static final String REACTIVATION_EMAIL_SUBJECT = "Getlinks Account Reactivation";
+	private static final String RESET_PASSWORD_EMAIL_SUBJECT = "Getlinks Password Reset";
 
 	@Override
 	public void sendRegistrationEmail(String email, String username, String message) throws MessagingException
@@ -46,6 +48,20 @@ public class RegistrationMailSenderImpl implements RegistrationMailSender
 
 	}
 
+	@Override
+	public void sendResetPasswordEmail(String email, String username, String message) throws MessagingException
+	{
+		Map<String, String> variables = new HashMap<String, String>();
+		variables.put("userName", username);
+		variables.put("message", message);
+
+		this.mailService.sendMail(RESET_PASSWORD_EMAIL_SUBJECT, new String[]
+		{
+			email
+		}, resetPasswordEmailTemplate, variables, new Locale("en"));
+
+	}
+
 	public void setRegistrationEmailTemplate(String registrationEmailTemplate)
 	{
 		this.registrationEmailTemplate = registrationEmailTemplate;
@@ -54,6 +70,11 @@ public class RegistrationMailSenderImpl implements RegistrationMailSender
 	public void setReactivationEmailTemplate(String reactivationEmailTemplate)
 	{
 		this.reactivationEmailTemplate = reactivationEmailTemplate;
+	}
+
+	public void setResetPasswordEmailTemplate(String resetPasswordEmailTemplate)
+	{
+		this.resetPasswordEmailTemplate = resetPasswordEmailTemplate;
 	}
 
 	public void setMailService(MailService mailService)

@@ -5,6 +5,6 @@
 
 
 	<bean id="userRegistrationModule" class="org.mockito.Mockito" factory-method="mock">
-		<constructor-arg value="#{new fr.getlinks.service.registration.impl.UserRegistrationModuleImpl().getClass()}" />
+		<constructor-arg value="#{new fr.getlinks.service.registration.impl.UserRegistrationServiceImpl().getClass()}" />
 	</bean>
 </beans>

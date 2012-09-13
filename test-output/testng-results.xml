@@ -2,28 +2,136 @@
 <testng-results skipped="0" failed="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="51" started-at="2012-09-11T22:10:35Z" finished-at="2012-09-11T22:10:35Z">
+  <suite name="Default suite" duration-ms="7453" started-at="2012-09-13T23:14:27Z" finished-at="2012-09-13T23:14:34Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="51" started-at="2012-09-11T22:10:35Z" finished-at="2012-09-11T22:10:35Z">
-      <class name="fr.getlinks.service.mail.registration.impl.RandomStringGeneratorImplTest">
-        <test-method status="PASS" signature="testCompareRandomTimestampString()[pri:0, instance:fr.getlinks.service.mail.registration.impl.RandomStringGeneratorImplTest@1b60280]" name="testCompareRandomTimestampString" duration-ms="38" started-at="2012-09-12T00:10:35Z" finished-at="2012-09-12T00:10:35Z">
+    <test name="Default test" duration-ms="7453" started-at="2012-09-13T23:14:27Z" finished-at="2012-09-13T23:14:34Z">
+      <class name="fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest">
+        <test-method status="PASS" signature="prepareCassandraCluster()[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="prepareCassandraCluster" is-config="true" duration-ms="1940" started-at="2012-09-14T01:14:25Z" finished-at="2012-09-14T01:14:27Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCompareRandomTimestampString -->
-        <test-method status="PASS" signature="testRandomString()[pri:0, instance:fr.getlinks.service.mail.registration.impl.RandomStringGeneratorImplTest@1b60280]" name="testRandomString" duration-ms="1" started-at="2012-09-12T00:10:35Z" finished-at="2012-09-12T00:10:35Z">
+        </test-method> <!-- prepareCassandraCluster -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2012-09-14T01:14:27Z" finished-at="2012-09-14T01:14:27Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testRandomString -->
-        <test-method status="PASS" signature="testRandomTimestampString()[pri:0, instance:fr.getlinks.service.mail.registration.impl.RandomStringGeneratorImplTest@1b60280]" name="testRandomTimestampString" duration-ms="1" started-at="2012-09-12T00:10:35Z" finished-at="2012-09-12T00:10:35Z">
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="init()[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="init" is-config="true" duration-ms="92" started-at="2012-09-14T01:14:27Z" finished-at="2012-09-14T01:14:27Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testRandomTimestampString -->
-        <test-method status="PASS" signature="testRandomTimestampStringWithRandomSuffix()[pri:0, instance:fr.getlinks.service.mail.registration.impl.RandomStringGeneratorImplTest@1b60280]" name="testRandomTimestampStringWithRandomSuffix" duration-ms="0" started-at="2012-09-12T00:10:35Z" finished-at="2012-09-12T00:10:35Z">
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="0" started-at="2012-09-14T01:14:27Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2012-09-14T01:14:27Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testRandomTimestampStringWithRandomSuffix -->
-      </class> <!-- fr.getlinks.service.mail.registration.impl.RandomStringGeneratorImplTest -->
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="1" started-at="2012-09-14T01:14:27Z" finished-at="2012-09-14T01:14:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest.testRegisterUser() throws javax.mail.MessagingException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="testRegisterUser()[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="testRegisterUser" duration-ms="2789" started-at="2012-09-14T01:14:27Z" finished-at="2012-09-14T01:14:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegisterUser -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="1" started-at="2012-09-14T01:14:29Z" finished-at="2012-09-14T01:14:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest.testRegisterUser() throws javax.mail.MessagingException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2012-09-14T01:14:29Z" finished-at="2012-09-14T01:14:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest.testActivateUser()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="testActivateUser()[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="testActivateUser" duration-ms="13" started-at="2012-09-14T01:14:29Z" depends-on-methods="fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest.testRegisterUser" finished-at="2012-09-14T01:14:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testActivateUser -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2012-09-14T01:14:29Z" finished-at="2012-09-14T01:14:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest.testActivateUser()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="1" started-at="2012-09-14T01:14:29Z" finished-at="2012-09-14T01:14:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest.testGenerateReactivationEmail() throws javax.mail.MessagingException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="testGenerateReactivationEmail()[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="testGenerateReactivationEmail" duration-ms="2221" started-at="2012-09-14T01:14:29Z" depends-on-methods="fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest.testActivateUser" finished-at="2012-09-14T01:14:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGenerateReactivationEmail -->
+        <test-method status="PASS" signature="testGenerateResetPasswordEmail()[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="testGenerateResetPasswordEmail" duration-ms="2323" started-at="2012-09-14T01:14:32Z" depends-on-methods="fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest.testGenerateReactivationEmail" finished-at="2012-09-14T01:14:34Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGenerateResetPasswordEmail -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2012-09-14T01:14:32Z" finished-at="2012-09-14T01:14:32Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest.testGenerateReactivationEmail() throws javax.mail.MessagingException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2012-09-14T01:14:32Z" finished-at="2012-09-14T01:14:32Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest.testGenerateResetPasswordEmail() throws javax.mail.MessagingException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="springTestContextAfterTestClass" is-config="true" duration-ms="1" started-at="2012-09-14T01:14:34Z" finished-at="2012-09-14T01:14:34Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest@149b290]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2012-09-14T01:14:34Z" finished-at="2012-09-14T01:14:34Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest.testGenerateResetPasswordEmail() throws javax.mail.MessagingException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+      </class> <!-- fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
