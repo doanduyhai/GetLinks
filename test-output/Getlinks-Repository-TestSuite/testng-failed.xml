@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Getlinks-Repository-TestSuite]">
+  <test name="repositoryTests(failed)" preserve-order="true">
+    <classes>
+      <class name="fr.getlinks.test.repository.impl.UserRepositoryImplTest">
+        <methods>
+          <include name="springTestContextAfterTestClass"/>
+          <include name="springTestContextAfterTestMethod"/>
+          <include name="testSaveUser_REPOSITORY"/>
+          <include name="testFindUserByLogin_REPOSITORY"/>
+          <include name="prepareCassandraCluster"/>
+        </methods>
+      </class> <!-- fr.getlinks.test.repository.impl.UserRepositoryImplTest -->
+      <class name="fr.getlinks.test.repository.impl.UserRegistrationRepositoryImplTest">
+        <methods>
+          <include name="springTestContextAfterTestClass"/>
+          <include name="testActivateUserFromRegistration_REPOSITORY"/>
+          <include name="testDeactivateUser_REPOSITORY"/>
+          <include name="testSaveUser_REPOSITORY"/>
+          <include name="testBindUser_REPOSITORY"/>
+        </methods>
+      </class> <!-- fr.getlinks.test.repository.impl.UserRegistrationRepositoryImplTest -->
+      <class name="fr.getlinks.test.repository.impl.UserNetworkRepositoryImplTest">
+        <methods>
+          <include name="springTestContextAfterTestClass"/>
+          <include name="init"/>
+          <include name="testFindNetworkUsageByLoginAndNetwork_REPOSITORY"/>
+          <include name="testSaveNetworkUsage_REPOSITORY"/>
+          <include name="testFindNetworkUsageByLogin_REPOSITORY"/>
+        </methods>
+      </class> <!-- fr.getlinks.test.repository.impl.UserNetworkRepositoryImplTest -->
+      <class name="fr.getlinks.test.repository.impl.NetworkRepositoryImplTest">
+        <methods>
+          <include name="testFindNetworkByName_REPOSITORY"/>
+          <include name="springTestContextAfterTestClass"/>
+          <include name="springTestContextAfterTestMethod"/>
+          <include name="testSaveNetwork_REPOSITORY"/>
+        </methods>
+      </class> <!-- fr.getlinks.test.repository.impl.NetworkRepositoryImplTest -->
+    </classes>
+  </test> <!-- repositoryTests(failed) -->
+</suite> <!-- Failed suite [Getlinks-Repository-TestSuite] -->

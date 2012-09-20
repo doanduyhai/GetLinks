@@ -59,7 +59,7 @@
 	
 	<!-- Filter to manage the login process -->
 	<!-- The class org.springframework.security.web.authentication.AuthenticationProcessingFilter just extends UsernamePasswordAuthenticationFilter -->
-	<bean id="formLoginFilter" class="fr.getlinks.security.ReCaptchaAuthenticationFilter">
+	<bean id="formLoginFilter" class="fr.getlinks.test.security.filter.ReCaptchaAuthenticationFilter">
   		<property name="authenticationManager" ref="authenticationManager"/>
   		<property name="filterProcessesUrl" value="/authentication"/>
   		<property name="authenticationSuccessHandler">
@@ -191,7 +191,7 @@
 	    <property name="filterProcessesUrl" value="/logout"/>
 	</bean>
     
-	<bean id="ajaxTimeoutRedirectFilter" class="fr.getlinks.security.AjaxTimeoutRedirectFilter">
+	<bean id="ajaxTimeoutRedirectFilter" class="fr.getlinks.test.security.filter.AjaxTimeoutRedirectFilter">
 		<property name="customSessionExpiredErrorCode" value="${ajax.session.timeout.http.code}"/>
 	</bean>
 </beans>	

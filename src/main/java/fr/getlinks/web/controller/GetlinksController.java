@@ -89,7 +89,7 @@ public class GetlinksController
 				}
 			}
 
-			return ViewConstants.PAGE_LOGIN;
+			return ViewConstants.VIEW_LOGIN;
 		}
 
 	}
@@ -109,7 +109,7 @@ public class GetlinksController
 		}
 		else
 		{
-			return ViewConstants.PAGE_HOME;
+			return ViewConstants.VIEW_HOME;
 		}
 
 	}
@@ -125,7 +125,7 @@ public class GetlinksController
 		}
 		else
 		{
-			return ViewConstants.PAGE_ABOUT;
+			return ViewConstants.VIEW_ABOUT;
 		}
 	}
 

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Getlinks-Controller-TestSuite" parallel="false" verbose="1" >  
+  <test name="controllerTests">
+    <classes>
+   	  <class name="fr.getlinks.test.web.controller.RegistrationControllerTest"/>
+    </classes>
+  </test>        
+</suite> 

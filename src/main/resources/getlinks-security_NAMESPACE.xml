@@ -15,7 +15,7 @@
     <http pattern="/assets/**" security="none"/>
     
 	
-	<beans:bean id="ajaxTimeoutRedirectFilter" class="fr.getlinks.security.AjaxTimeoutRedirectFilter">
+	<beans:bean id="ajaxTimeoutRedirectFilter" class="fr.getlinks.test.security.AjaxTimeoutRedirectFilter">
 		<beans:property name="customSessionExpiredErrorCode" value="${ajax.session.timeout.http.code}"/>
 	</beans:bean>
 	
@@ -35,7 +35,7 @@
   		<beans:property name="loginFormUrl" value="/login" />
 	</beans:bean>
 	
-	<beans:bean id="authenticationProcessingFilter" class="fr.getlinks.security.ReCaptchaAuthenticationFilter">
+	<beans:bean id="authenticationProcessingFilter" class="fr.getlinks.test.security.ReCaptchaAuthenticationFilter">
   		<beans:property name="authenticationManager" ref="authenticationManager"/>
   		<beans:property name="filterProcessesUrl" value="/authentication"/>
   		<beans:property name="authenticationSuccessHandler">

@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>TestNG:  serviceTests</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>serviceTests</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>11/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Fri Sep 21 00:07:16 CEST 2012</td>
+</tr>
+<tr><td>Total time:</td><td>18 seconds (18763 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='fr.getlinks.test.service.registration.impl.UserRegistrationServiceTest.testActivateUser_SERVICE()'><b>testActivateUser_SERVICE</b><br>Test class: fr.getlinks.test.service.registration.impl.UserRegistrationServiceTest</td>
+<td></td>
+<td>0</td>
+<td>fr.getlinks.test.service.registration.impl.UserRegistrationServiceTest@19f3736</td></tr>
+<tr>
+<td title='fr.getlinks.test.service.registration.impl.RandomStringGeneratorImplTest.testCompareRandomTimestampString_SERVICE()'><b>testCompareRandomTimestampString_SERVICE</b><br>Test class: fr.getlinks.test.service.registration.impl.RandomStringGeneratorImplTest</td>
+<td></td>
+<td>0</td>
+<td>fr.getlinks.test.service.registration.impl.RandomStringGeneratorImplTest@401369</td></tr>
+<tr>
+<td title='fr.getlinks.test.service.registration.impl.UserRegistrationServiceTest.testGenerateReactivationEmail_SERVICE()'><b>testGenerateReactivationEmail_SERVICE</b><br>Test class: fr.getlinks.test.service.registration.impl.UserRegistrationServiceTest</td>
+<td></td>
+<td>3</td>
+<td>fr.getlinks.test.service.registration.impl.UserRegistrationServiceTest@19f3736</td></tr>
+<tr>
+<td title='fr.getlinks.test.service.registration.impl.UserRegistrationServiceTest.testGenerateResetPasswordEmail_SERVICE()'><b>testGenerateResetPasswordEmail_SERVICE</b><br>Test class: fr.getlinks.test.service.registration.impl.UserRegistrationServiceTest</td>
+<td></td>
+<td>2</td>
+<td>fr.getlinks.test.service.registration.impl.UserRegistrationServiceTest@19f3736</td></tr>
+<tr>
+<td title='fr.getlinks.test.service.registration.impl.RandomStringGeneratorImplTest.testRandomString_SERVICE()'><b>testRandomString_SERVICE</b><br>Test class: fr.getlinks.test.service.registration.impl.RandomStringGeneratorImplTest</td>
+<td></td>
+<td>0</td>
+<td>fr.getlinks.test.service.registration.impl.RandomStringGeneratorImplTest@401369</td></tr>
+<tr>
+<td title='fr.getlinks.test.service.registration.impl.RandomStringGeneratorImplTest.testRandomTimestampStringWithRandomSuffix_SERVICE()'><b>testRandomTimestampStringWithRandomSuffix_SERVICE</b><br>Test class: fr.getlinks.test.service.registration.impl.RandomStringGeneratorImplTest</td>
+<td></td>
+<td>0</td>
+<td>fr.getlinks.test.service.registration.impl.RandomStringGeneratorImplTest@401369</td></tr>
+<tr>
+<td title='fr.getlinks.test.service.registration.impl.RandomStringGeneratorImplTest.testRandomTimestampString_SERVICE()'><b>testRandomTimestampString_SERVICE</b><br>Test class: fr.getlinks.test.service.registration.impl.RandomStringGeneratorImplTest</td>
+<td></td>
+<td>0</td>
+<td>fr.getlinks.test.service.registration.impl.RandomStringGeneratorImplTest@401369</td></tr>
+<tr>
+<td title='fr.getlinks.test.service.registration.impl.UserRegistrationServiceTest.testRegisterUser_SERVICE()'><b>testRegisterUser_SERVICE</b><br>Test class: fr.getlinks.test.service.registration.impl.UserRegistrationServiceTest</td>
+<td></td>
+<td>2</td>
+<td>fr.getlinks.test.service.registration.impl.UserRegistrationServiceTest@19f3736</td></tr>
+<tr>
+<td title='fr.getlinks.test.service.mail.MailServiceTest.testSendHTMLMail_SERVICE()'><b>testSendHTMLMail_SERVICE</b><br>Test class: fr.getlinks.test.service.mail.MailServiceTest</td>
+<td></td>
+<td>5</td>
+<td>fr.getlinks.test.service.mail.MailServiceTest@14b5f4a</td></tr>
+<tr>
+<td title='fr.getlinks.test.service.registration.impl.RegistrationMailSenderImplTest.testSendRegistrationEmail_SERVICE()'><b>testSendRegistrationEmail_SERVICE</b><br>Test class: fr.getlinks.test.service.registration.impl.RegistrationMailSenderImplTest</td>
+<td></td>
+<td>2</td>
+<td>fr.getlinks.test.service.registration.impl.RegistrationMailSenderImplTest@b1aebf</td></tr>
+<tr>
+<td title='fr.getlinks.test.service.registration.impl.RegistrationMailSenderImplTest.testSendUnblockEmail_SERVICE()'><b>testSendUnblockEmail_SERVICE</b><br>Test class: fr.getlinks.test.service.registration.impl.RegistrationMailSenderImplTest</td>
+<td></td>
+<td>3</td>
+<td>fr.getlinks.test.service.registration.impl.RegistrationMailSenderImplTest@b1aebf</td></tr>
+</table><p>
+</body>
+</html>

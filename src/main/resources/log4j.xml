@@ -21,7 +21,7 @@
 		<level value="WARN" />
 	</logger>
 		    
- 	<logger name="fr.getlinks.security.ReCaptchaAuthenticationFilter">
+ 	<logger name="fr.getlinks.test.security.ReCaptchaAuthenticationFilter">
 		<level value="DEBUG" />
 	</logger>	
 	

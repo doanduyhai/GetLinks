@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Getlinks-Global-TestSuite" parallel="false" verbose="1" thread-count="1">
+
+  <test name="repositoryTests" >
+    <classes>
+      <class name="fr.getlinks.test.repository.impl.NetworkRepositoryImplTest"/>
+      <class name="fr.getlinks.test.repository.impl.UserRepositoryImplTest"/>   
+      <class name="fr.getlinks.test.repository.impl.UserRegistrationRepositoryImplTest"/>      
+      <class name="fr.getlinks.test.repository.impl.UserNetworkRepositoryImplTest"/>
+    </classes>
+  </test>
+           
+  <test name="serviceTests">
+    <classes>
+   	  <class name="fr.getlinks.test.service.mail.MailServiceTest"/>
+   	  <class name="fr.getlinks.test.service.registration.impl.RandomStringGeneratorImplTest"/>
+   	  <class name="fr.getlinks.test.service.registration.impl.RegistrationMailSenderImplTest"/>
+   	  <class name="fr.getlinks.test.service.registration.impl.UserRegistrationServiceTest"/>
+    </classes>
+  </test>
+  
+  <test name="controllerTests">
+    <classes>
+   	  <class name="fr.getlinks.test.web.controller.RegistrationControllerTest"/>
+    </classes>
+  </test>             
+</suite>
+
+
+

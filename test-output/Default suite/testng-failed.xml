@@ -3,21 +3,18 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)" preserve-order="true">
     <classes>
-      <class name="fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest">
+      <class name="fr.getlinks.test.repository.impl.NetworkRepositoryImplTest">
         <methods>
           <include name="prepareCassandraCluster"/>
-          <include name="init"/>
           <include name="springTestContextAfterTestClass"/>
           <include name="springTestContextBeforeTestClass"/>
-          <include name="testGenerateReactivationEmail"/>
           <include name="springTestContextBeforeTestMethod"/>
-          <include name="testActivateUser"/>
           <include name="springTestContextPrepareTestInstance"/>
-          <include name="testGenerateResetPasswordEmail"/>
           <include name="springTestContextAfterTestMethod"/>
-          <include name="testRegisterUser"/>
+          <include name="testSaveNetwork_REPOSITORY"/>
+          <include name="testFindNetworkByName_REPOSITORY"/>
         </methods>
-      </class> <!-- fr.getlinks.service.mail.registration.impl.UserRegistrationServiceTest -->
+      </class> <!-- fr.getlinks.test.repository.impl.NetworkRepositoryImplTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

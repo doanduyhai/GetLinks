@@ -5,7 +5,7 @@ import fr.getlinks.domain.cassandra.User;
 import fr.getlinks.domain.cassandra.UserRegistration;
 import fr.getlinks.repository.UserRegistrationRepository;
 
-public class UserRegistrationRepositoryImpl extends CassandraAbstractRepository implements UserRegistrationRepository
+public class UserRegistrationRepositoryImpl extends CassandraRepository implements UserRegistrationRepository
 {
 
 	@Override

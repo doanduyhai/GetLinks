@@ -1,5 +1,6 @@
 package fr.getlinks.web.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,4 +36,17 @@ public class RegistrationController
 		this.userRegistrationService = userRegistrationService;
 	}
 
+	@RequestMapping(value = ViewConstants.URL_CHANGE_PASSWORD, method = RequestMethod.GET)
+	public String changePassword()
+	{
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (user.isShouldChangePassword())
+		{
+			return ViewConstants.VIEW_CHANGE_PASSWORD;
+		}
+		else
+		{
+			return ViewConstants.VIEW_HOME;
+		}
+	}
 }

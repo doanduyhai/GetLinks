@@ -18,12 +18,16 @@
 		<constructor-arg index="1" type="java.lang.String" value="fr.getlinks.domain.cassandra"/>
 	</bean>	
 
-	<bean id="abstractRepository" class="fr.getlinks.repository.impl.CassandraAbstractRepository" 
+	<bean id="cassandraRepository" class="fr.getlinks.repository.impl.CassandraRepository" 
 		abstract="true" depends-on="cassandraConfiguration">
-		<property name="keyspaceOperator" value="#{cassandraConfiguration.getKeyspace()}"/>
+		<property name="keyspace" value="#{cassandraConfiguration.getKeyspace()}"/>
 		<property name="em" ref="entityManagerImpl"/>
 	</bean>
 	
-	<bean id="userRegistrationRepository" class="fr.getlinks.repository.impl.UserRegistrationRepositoryImpl" parent="abstractRepository"/>
-					
+	<bean id="userRegistrationRepository" class="fr.getlinks.repository.impl.UserRegistrationRepositoryImpl" parent="cassandraRepository"/>
+	<bean id="networkRepository" class="fr.getlinks.repository.impl.NetworkRepositoryImpl" parent="cassandraRepository"/>
+	<bean id="userRepository" class="fr.getlinks.repository.impl.UserRepositoryImpl" parent="cassandraRepository"/>
+	<bean id="userNetworkRepository" class="fr.getlinks.repository.impl.UserNetworkRepositoryImpl" parent="cassandraRepository">
+		<property name="networkRepository" ref="networkRepository"/>
+	</bean>					
 </beans>

@@ -5,7 +5,10 @@ import static fr.getlinks.repository.configuration.ColumnFamilyKeys.USER_CF;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import me.prettyprint.hom.annotations.Column;
 import me.prettyprint.hom.annotations.Id;
 import me.prettyprint.hom.converters.JodaTimeHectorConverter;
@@ -15,7 +18,22 @@ import org.joda.time.DateTime;
 
 @Entity
 @Table(name = USER_CF)
-@Data
+@ToString(of =
+{
+		"login",
+		"firstname",
+		"lastname",
+		"contactEmail"
+})
+@EqualsAndHashCode(of =
+{
+		"login",
+		"firstname",
+		"lastname",
+		"contactEmail"
+})
+@Getter
+@Setter
 public class User
 {
 	@Id

@@ -34,7 +34,7 @@
     	
     <filter>
         <filter-name>monitoringFilter</filter-name>
-        <filter-class>fr.getlinks.web.monitoring.MonitoringFilter</filter-class>
+        <filter-class>fr.getlinks.test.web.monitoring.MonitoringFilter</filter-class>
     </filter>
 
  	<filter>
